@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.restfuldatabaseaccess.dbstatements.SQLStatements;
+
 @RestController
 public class RestRequestController {
 
@@ -16,6 +18,6 @@ public class RestRequestController {
 	
 	@RequestMapping(value="/getStudents" ,method=RequestMethod.GET)
 	public String getStudents() {
-		return "";
+		return databaseHandler.performQuery(SQLStatements.getStudents, SQLStatements.studentNameSurname);
 	}
 }

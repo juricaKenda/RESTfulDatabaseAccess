@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Scanner;
 
 import org.springframework.stereotype.Repository;
@@ -35,7 +37,7 @@ public class DatabaseRequestController implements StudAdminDAO{
 	}
 
 	private void pullDatabaseInfo() {
-		File infoFile = new File("src/main/resources/DatabaseConnectionInfo.txt");
+		File infoFile = new File("src/main/resources/static/DatabaseConnectionInfo.txt");
 		try (Scanner fileScanner = new Scanner(infoFile)){
 			this.url = fileScanner.nextLine();
 			this.user = fileScanner.nextLine();
@@ -48,8 +50,23 @@ public class DatabaseRequestController implements StudAdminDAO{
 
 	@Override
 	public String performQuery(String SQLQuery,String[] resultColumnNames) {
-		// TODO Auto-generated method stub
-		return null;
+		this.connectToStudAdmin();
+		
+		StringBuilder builder = new StringBuilder();
+		try {
+			Statement statement = this.databaseConnection.createStatement();
+			ResultSet results = statement.executeQuery(SQLQuery);
+			
+			while(results.next()) {
+				for(String eachColumn : resultColumnNames) {
+					builder.append(results.getString(eachColumn)+"\n");
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return builder.toString();
 	}
 
 	
