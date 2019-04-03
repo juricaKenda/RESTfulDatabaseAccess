@@ -1,0 +1,3 @@
+jdbc:postgresql://localhost/studAdmin
+username
+password
