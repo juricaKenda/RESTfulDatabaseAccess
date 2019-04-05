@@ -16,8 +16,10 @@ public class RestRequestController {
 	
 	
 	
-	@RequestMapping(value="/getStudents" ,method=RequestMethod.GET)
+	@RequestMapping(value="/students" ,method=RequestMethod.GET)
 	public String getStudents() {
 		return databaseHandler.performQuery(SQLStatements.getStudents, SQLStatements.studentNameSurname);
 	}
+	
+	
 }
