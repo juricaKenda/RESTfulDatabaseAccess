@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org">
+	<head>
+	<title>Student display</title>
+	</head>
+	
+	
+	<table>
+    <thead>
+        <tr>
+            <th> Ime </th>
+            <th> Prezime </th>
+             <th> Datum rodenja </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr th:each="student : ${students}">
+            <td><span th:text="${student.ime}"></span></td>
+            <td><span th:text="${student.prezime}"></span></td>
+            <td><span th:text="${student.datumrod}"></span></td>
+        </tr>
+    </tbody>
+</table>
+      
+
+</html>

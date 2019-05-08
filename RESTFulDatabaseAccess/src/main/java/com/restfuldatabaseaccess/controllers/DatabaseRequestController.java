@@ -7,10 +7,14 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import org.springframework.stereotype.Repository;
 
+import com.restfuldatabaseaccess.dbstatements.SQLStatements;
+import com.restfuldatabaseaccess.entities.Student;
 import com.restfuldatabaseaccess.interfaces.StudAdminDAO;
 
 @Repository
@@ -69,5 +73,36 @@ public class DatabaseRequestController implements StudAdminDAO{
 		return builder.toString();
 	}
 
+	public List<Student> getStudents() {
+		this.connectToStudAdmin();
+		
+		String SQLQuery = SQLStatements.getStudents;
+		String[] resultColumnNames = SQLStatements.studentNameSurname;
+		List<Student> list = new ArrayList<Student>();
+		
+		try {
+			Statement statement = this.databaseConnection.createStatement();
+			ResultSet results = statement.executeQuery(SQLQuery);
+			
+			while(results.next()) {
+				Student newStud = new Student();
+				for(String eachColumn : resultColumnNames) {
+					if(eachColumn.equals("imestudent")) {
+						newStud.setIme(results.getString(eachColumn));
+					}else if(eachColumn.equals("prezimestudent")) {
+						newStud.setPrezime(results.getString(eachColumn));
+					}else {
+						newStud.setDatumrod(results.getString(eachColumn));
+					}
+				}
+				list.add(newStud);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return list;
+	}
+	
 	
 }
