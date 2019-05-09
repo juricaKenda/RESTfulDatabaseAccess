@@ -1,20 +1,34 @@
 <!DOCTYPE html>
 <html xmlns:th = "http://www.thymeleaf.org">
+
 	<head>
 	<title>Student display</title>
 	</head>
 	
-	<table>
+	<h1>Filter students by first name</h1>
+	<form action="#" th:action="@{/table}" th:object="${stud}" method="post">
+  				First name: <input type="text" th:field="*{ime}" >
+
+  <button type="submit" formaction="">Submit</button>
+</form>
+	
+	<style>
+	table, th, td {
+  	border: 1px solid black;
+	}	
+	</style>
+	
+<!--Table for displaying student data -->
+<table>
     <thead>
         <tr>
-            <th> Ime </th>
-            <th> Prezime </th>
-             <th> Datum rodenja </th>
+         <th> Name </th>
+         <th> Surname </th>
+         <th> Date of Birth </th>
         </tr>
     </thead>
     <tbody>
-
-        <tr th:each="student : ${students}">
+        <tr th:each="student : ${studentsinfo}">
             <td><span th:text="${student.ime}"></span></td>
             <td><span th:text="${student.prezime}"></span></td>
             <td><span th:text="${student.datumrod}"></span></td>
