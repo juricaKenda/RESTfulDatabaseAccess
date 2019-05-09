@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th = "http://www.thymeleaf.org">
+
+	<head>
+	<title>Filtered student display</title>
+	</head>
+	
+	<h1>Filtered students</h1>
+	
+	<style>
+	table, th, td {
+  	border: 1px solid black;
+	}	
+	</style>
+	
+<!--Table for displaying student data -->
+<table>
+    <thead>
+        <tr>
+         <th> Name </th>
+         <th> Surname </th>
+         <th> Date of Birth </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="student : ${studentsinfo}">
+            <td><span th:text="${student.ime}"></span></td>
+            <td><span th:text="${student.prezime}"></span></td>
+            <td><span th:text="${student.datumrod}"></span></td>
+        </tr>
+    </tbody>
+</table>
+      
+
+</html>
