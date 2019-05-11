@@ -40,6 +40,7 @@ public class HtmlResponseController {
 									 .filter(x -> x.getIme().equals(student.getIme()))
 									 .collect(Collectors.toList());
 		model.addAttribute("studentsinfo",filtered);
+		model.addAttribute("filterStudent", student);
 		return "studentsfiltered";
 	}
 	

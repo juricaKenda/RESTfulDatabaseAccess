@@ -6,6 +6,11 @@
 	</head>
 	
 	<h1>Filtered students</h1>
+	<h2 th:text="${filterStudent.ime}"></h2>
+	
+	<form action="#" th:action="@{/table}" th:object="${stud}" method="get">
+  	<button type="submit" formaction=""> Return to main page </button>
+  	</form>
 	
 	<style>
 	table, th, td {
