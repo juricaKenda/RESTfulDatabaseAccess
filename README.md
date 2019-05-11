@@ -1,7 +1,13 @@
 # RESTfulDatabaseAccess
-Spring Boot project incorporating a PostgreSQL database communication
 
 ![](/RESTFulDatabaseAccess/Visuals/studentsfilter.png)
+
+
+## About the project
+* The project is still ongoing
+* Spring Boot project incorporating a PostgreSQL database communication
+### Motivation
+Motivation for starting this project was rooted in my desire to start learning Spring Boot and building MVC Architecture Web Services. I think it is a very useful skill to have in today's technological world.
 
 
 ## Authors
